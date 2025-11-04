@@ -3,5 +3,5 @@
 Current dependancies:
 
 <li>
- - Parchment (for mappings)
+Parchment (for mappings)
 </li>
