@@ -1,4 +1,4 @@
-# Forge-Tutorial-1.20.X
+# Forge-Setup-1.20.X
  
 Current dependancies:
 
