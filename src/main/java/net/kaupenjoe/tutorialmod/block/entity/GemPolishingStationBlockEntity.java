@@ -1,7 +1,6 @@
 package net.kaupenjoe.tutorialmod.block.entity;
 
 import net.kaupenjoe.tutorialmod.item.ModItems;
-import net.kaupenjoe.tutorialmod.recipe.GemPolishingRecipe;
 import net.kaupenjoe.tutorialmod.screen.GemPolishingStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,8 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
@@ -144,9 +141,7 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        Optional<GemPolishingRecipe> recipe = getCurrentRecipe();
-        ItemStack result = recipe.get().getResultItem(null);
-
+        ItemStack result = new ItemStack(ModItems.SAPPHIRE.get(), 1);
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
@@ -154,23 +149,10 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private boolean hasRecipe() {
-        Optional<GemPolishingRecipe> recipe = getCurrentRecipe();
+        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.RAW_SAPPHIRE.get();
+        ItemStack result = new ItemStack(ModItems.SAPPHIRE.get());
 
-        if(recipe.isEmpty()) {
-            return false;
-        }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
-
-        return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
-    }
-
-    private Optional<GemPolishingRecipe> getCurrentRecipe() {
-        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
-        }
-
-        return this.level.getRecipeManager().getRecipeFor(GemPolishingRecipe.Type.INSTANCE, inventory, level);
+        return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
