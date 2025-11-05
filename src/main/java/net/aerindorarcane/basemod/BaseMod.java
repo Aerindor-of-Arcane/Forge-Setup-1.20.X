@@ -1,6 +1,7 @@
 package net.aerindorarcane.basemod;
 
 import com.mojang.logging.LogUtils;
+import net.aerindorarcane.basemod.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -22,6 +23,8 @@ public class BaseMod {
     public BaseMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -34,7 +37,7 @@ public class BaseMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey())
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
