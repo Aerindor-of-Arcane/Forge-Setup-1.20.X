@@ -1,6 +1,7 @@
 package net.aerindorarcane.basemod;
 
 import com.mojang.logging.LogUtils;
+import net.aerindorarcane.basemod.block.ModBlocks;
 import net.aerindorarcane.basemod.item.ModCreativeModeTabs;
 import net.aerindorarcane.basemod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -28,6 +29,8 @@ public class BaseMod {
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
+
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
