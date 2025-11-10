@@ -1,0 +1,6 @@
+{
+  "parent": "basemod:block/raw_sapphire_block",
+  "textures": {
+    "all": "basemod:block/raw_sapphire_block"
+  }
+}

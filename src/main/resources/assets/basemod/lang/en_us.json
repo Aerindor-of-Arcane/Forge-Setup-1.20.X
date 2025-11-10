@@ -3,5 +3,7 @@
   "item.basemod.uncut_sapphire": "Uncut Sapphire",
 
   "creativetab.basemod_tab": "Sapphire Mod",
-  "block.tutorialmod.sapphire_block": "Block of Sapphire"
+  "block.tutorialmod.sapphire_block": "Block of Sapphire",
+  "block.tutorialmod.raw_sapphire_block": "Block of Uncut Sapphire",
+
 }
